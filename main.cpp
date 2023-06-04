@@ -1,4 +1,4 @@
-#include <stdio.h> // підключення бібліотек
+#include <stdio.h> // РїС–РґРєР»СЋС‡РµРЅРЅСЏ Р±С–Р±Р»С–РѕС‚РµРє
 #include <conio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -11,19 +11,19 @@
 #include <iomanip>
 #include <stdbool.h>
 
-#pragma comment(lib,"shell32")//для використання відкриття посилань в браузері
+#pragma comment(lib,"shell32")//РґР»СЏ РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РІС–РґРєСЂРёС‚С‚СЏ РїРѕСЃРёР»Р°РЅСЊ РІ Р±СЂР°СѓР·РµСЂС–
 
 using namespace std;
 
-int callback_function(void* data, int argc, char** argv, char** azColName) {//функція для визначення оплати квитка
+int callback_function(void* data, int argc, char** argv, char** azColName) {//С„СѓРЅРєС†С–СЏ РґР»СЏ РІРёР·РЅР°С‡РµРЅРЅСЏ РѕРїР»Р°С‚Рё РєРІРёС‚РєР°
     char* pay = (char*)data;
     if (argc > 0) {
-        strcpy(pay, argv[0]); // копіює значення стовпця paystatus до змінної pay
+        strcpy(pay, argv[0]); // РєРѕРїС–СЋС” Р·РЅР°С‡РµРЅРЅСЏ СЃС‚РѕРІРїС†СЏ paystatus РґРѕ Р·РјС–РЅРЅРѕС— pay
     }
     return 0;
 }
 
-void cool_design(char str[1000], int len) {//функція для виводу даних з бази даних в формі меню
+void cool_design(char str[1000], int len) {//С„СѓРЅРєС†С–СЏ РґР»СЏ РІРёРІРѕРґСѓ РґР°РЅРёС… Р· Р±Р°Р·Рё РґР°РЅРёС… РІ С„РѕСЂРјС– РјРµРЅСЋ
     int i = 0;
     int strLen = strlen(str);
     while (i < strLen) {
@@ -49,10 +49,10 @@ void cool_design(char str[1000], int len) {//функція для виводу даних з бази дан
 
 int main() {
     system("color 03");
-    SetConsoleCP(1251);//встановлення encoding Cyrillic (Windows 1251) для відображення української мови
+    SetConsoleCP(1251);//РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ encoding Cyrillic (Windows 1251) РґР»СЏ РІС–РґРѕР±СЂР°Р¶РµРЅРЅСЏ СѓРєСЂР°С—РЅСЃСЊРєРѕС— РјРѕРІРё
     SetConsoleOutputCP(1251);
 
-    sqlite3 *db;//підключення бази даних 
+    sqlite3 *db;//РїС–РґРєР»СЋС‡РµРЅРЅСЏ Р±Р°Р·Рё РґР°РЅРёС… 
     int rc = sqlite3_open("database.db", &db);      
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Unable to open database: %s\n", sqlite3_errmsg(db));
@@ -60,10 +60,10 @@ int main() {
         return 1;
     }
     char sql[2566];
-    sprintf(sql, "CREATE TABLE IF NOT EXISTS tickets(id INTEGER PRIMARY KEY,  film_name TEXT, customer_name TEXT, booking_date TEXT, seans TEXT, seats INTEGER, tuppl TEXT, price TEXT, paystatus TEXT);");// створення таблиці квитків
+    sprintf(sql, "CREATE TABLE IF NOT EXISTS tickets(id INTEGER PRIMARY KEY,  film_name TEXT, customer_name TEXT, booking_date TEXT, seans TEXT, seats INTEGER, tuppl TEXT, price TEXT, paystatus TEXT);");// СЃС‚РІРѕСЂРµРЅРЅСЏ С‚Р°Р±Р»РёС†С– РєРІРёС‚РєС–РІ
     rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
 
-    sprintf(sql, "CREATE TABLE IF NOT EXISTS films(id INTEGER PRIMARY KEY, name TEXT, age TEXT, country TEXT, genre TEXT, cast TEXT, duration TEXT, about TEXT CHECK(LENGTH(about) <= 1000), link TEXT);");// створення таблиці фільмів
+    sprintf(sql, "CREATE TABLE IF NOT EXISTS films(id INTEGER PRIMARY KEY, name TEXT, age TEXT, country TEXT, genre TEXT, cast TEXT, duration TEXT, about TEXT CHECK(LENGTH(about) <= 1000), link TEXT);");// СЃС‚РІРѕСЂРµРЅРЅСЏ С‚Р°Р±Р»РёС†С– С„С–Р»СЊРјС–РІ
     rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
 
 
@@ -71,45 +71,45 @@ int main() {
     while ( 1 ) {
         one:
         system("cls");
-        printf("+----------------------------------------------------------------------------------------------------+\n");// меню
-        printf("| K - додавання фільмів                          Меню:                                               |\n");
+        printf("+----------------------------------------------------------------------------------------------------+\n");// РјРµРЅСЋ
+        printf("| K - РґРѕРґР°РІР°РЅРЅСЏ С„С–Р»СЊРјС–РІ                          РњРµРЅСЋ:                                               |\n");
         printf("+----------------------------------------------------------------------------------------------------+\n");
-        printf("|                                              Прем'єри - 1                                          |\n");
-        printf("|                                             Мої квитки - 2                                         |\n");
-        printf("|                                            Про програму - 3                                        |\n");
-        printf("|                                               Вийти - 4                                            |\n");
+        printf("|                                              РџСЂРµРј'С”СЂРё - 1                                          |\n");
+        printf("|                                             РњРѕС— РєРІРёС‚РєРё - 2                                         |\n");
+        printf("|                                            РџСЂРѕ РїСЂРѕРіСЂР°РјСѓ - 3                                        |\n");
+        printf("|                                               Р’РёР№С‚Рё - 4                                            |\n");
         printf("+----------------------------------------------------------------------------------------------------+\n");
-        printf("Вибір опції: ");
+        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
         char menu;
         scanf("%s", &menu);
-        if(menu=='1') {//якщо введено 1 то вивід фільмів
+        if(menu=='1') {//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ 1 С‚Рѕ РІРёРІС–Рґ С„С–Р»СЊРјС–РІ
             while( 1 ){
                 prems:
                 system("cls");
-                printf("+------------------------------------------------------------------------+---------------+-----------+\n");// вибірка фільмів з бази даних id та name
-                printf("|                                              Прем'єри:                 | Оберіть фільм |           |\n");
+                printf("+------------------------------------------------------------------------+---------------+-----------+\n");// РІРёР±С–СЂРєР° С„С–Р»СЊРјС–РІ Р· Р±Р°Р·Рё РґР°РЅРёС… id С‚Р° name
+                printf("|                                              РџСЂРµРј'С”СЂРё:                 | РћР±РµСЂС–С‚СЊ С„С–Р»СЊРј |           |\n");
                 printf("+------------------------------------------------------------------------+---------------+-----------+\n");
                 sqlite3_stmt *stmt;
-                rc = sqlite3_prepare_v2(db, "SELECT * FROM films;", -1, &stmt, 0);//Вивести всі фільми з бази даних films 
+                rc = sqlite3_prepare_v2(db, "SELECT * FROM films;", -1, &stmt, 0);//Р’РёРІРµСЃС‚Рё РІСЃС– С„С–Р»СЊРјРё Р· Р±Р°Р·Рё РґР°РЅРёС… films 
                 int cols = sqlite3_column_count(stmt);
                 while (sqlite3_step(stmt) == SQLITE_ROW) {
                     const unsigned char *id = sqlite3_column_text(stmt, 0);
                     char bymam[1000];
                     strcpy(bymam, reinterpret_cast<const char*>(id));
-                    cool_design(bymam, 88);//вивід id фільма через функцію
+                    cool_design(bymam, 88);//РІРёРІС–Рґ id С„С–Р»СЊРјР° С‡РµСЂРµР· С„СѓРЅРєС†С–СЋ
                     const unsigned char *name = sqlite3_column_text(stmt, 1);
                     char bymam1[1000];
                     strcpy(bymam1, reinterpret_cast<const char*>(name));
-                    cool_design(bymam1, 88);//вивід назви фільма через функцію
+                    cool_design(bymam1, 88);//РІРёРІС–Рґ РЅР°Р·РІРё С„С–Р»СЊРјР° С‡РµСЂРµР· С„СѓРЅРєС†С–СЋ
                 };
-                printf("|                                               Меню - w                                             |\n");
+                printf("|                                               РњРµРЅСЋ - w                                             |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
                 
                 char name[256];
                 const unsigned char *namef;
-                printf("Вибір опції: ");
+                printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                 scanf("%s", name);
-                if (name[0] == 'W' || name[0] == 'w' || name[0] == 'Ц' || name[0] == 'ц'){//перехід в меню якщо введено w
+                if (name[0] == 'W' || name[0] == 'w' || name[0] == 'Р¦' || name[0] == 'С†'){//РїРµСЂРµС…С–Рґ РІ РјРµРЅСЋ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                     goto one;
                 }
                 film:
@@ -117,15 +117,15 @@ int main() {
                 sqlite3_stmt *pooping;
                 char query[1000];
                  
-                sprintf(query, "SELECT * FROM films WHERE id = %s;", name);// вивід повної інф по id
+                sprintf(query, "SELECT * FROM films WHERE id = %s;", name);// РІРёРІС–Рґ РїРѕРІРЅРѕС— С–РЅС„ РїРѕ id
 
                 rc = sqlite3_prepare_v2(db, query, -1, &pooping, NULL);
-                printf("+----------------------------------------------------------------------------------------------------+\n");//після вибору фільма з бази даних виводиться повна інформація про цей фільм, користувач може повернутися назад, або забронювати квиток на цей фільм
+                printf("+----------------------------------------------------------------------------------------------------+\n");//РїС–СЃР»СЏ РІРёР±РѕСЂСѓ С„С–Р»СЊРјР° Р· Р±Р°Р·Рё РґР°РЅРёС… РІРёРІРѕРґРёС‚СЊСЃСЏ РїРѕРІРЅР° С–РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ С†РµР№ С„С–Р»СЊРј, РєРѕСЂРёСЃС‚СѓРІР°С‡ РјРѕР¶Рµ РїРѕРІРµСЂРЅСѓС‚РёСЃСЏ РЅР°Р·Р°Рґ, Р°Р±Рѕ Р·Р°Р±СЂРѕРЅСЋРІР°С‚Рё РєРІРёС‚РѕРє РЅР° С†РµР№ С„С–Р»СЊРј
                 while (sqlite3_step(pooping) == SQLITE_ROW) {
                     namef = sqlite3_column_text(pooping, 1);
                     char bymam2[1000];
                     strcpy(bymam2, reinterpret_cast<const char*>(namef));
-                    cool_design(bymam2, 88);//вивід інформації про фільм в функції 
+                    cool_design(bymam2, 88);//РІРёРІС–Рґ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ С„С–Р»СЊРј РІ С„СѓРЅРєС†С–С— 
                     const unsigned char *age = sqlite3_column_text(pooping, 2);
                     char bymam3[1000];
                     strcpy(bymam3, reinterpret_cast<const char*>(age));
@@ -155,59 +155,59 @@ int main() {
                     strcpy(bymam9, reinterpret_cast<const char*>(link));
                 
                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                    printf("|                       Прем'єри - w  | Забронювати квиток - e  |  Трейлер - t                       |\n");
+                    printf("|                       РџСЂРµРј'С”СЂРё - w  | Р—Р°Р±СЂРѕРЅСЋРІР°С‚Рё РєРІРёС‚РѕРє - e  |  РўСЂРµР№Р»РµСЂ - t                       |\n");
                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                    printf("Вибір опції: ");
+                    printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                     char book[100];
                     scanf("%s", &book);
-                    if (book[0] == 'W'|| book[0] == 'w' || book[0] == 'Ц' || book[0] == 'ц'){//назад якщо введено w
+                    if (book[0] == 'W'|| book[0] == 'w' || book[0] == 'Р¦' || book[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                         goto prems;
                     }
-                    if (book[0] == 'T'|| book[0] == 't' || book[0] == 'Е' || book[0] == 'е'){
-                        ShellExecuteA(0, "open", bymam9, NULL, NULL, SW_SHOWDEFAULT);//відкриття трейлера фільма в браузері якщо введено t
+                    if (book[0] == 'T'|| book[0] == 't' || book[0] == 'Р•' || book[0] == 'Рµ'){
+                        ShellExecuteA(0, "open", bymam9, NULL, NULL, SW_SHOWDEFAULT);//РІС–РґРєСЂРёС‚С‚СЏ С‚СЂРµР№Р»РµСЂР° С„С–Р»СЊРјР° РІ Р±СЂР°СѓР·РµСЂС– СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ t
                         goto film;
                     }
-                    if (book[0] == 'E' || book[0] == 'e' || book[0] == 'У' || book[0] == 'у'){//процес бронювання якщо введено e
+                    if (book[0] == 'E' || book[0] == 'e' || book[0] == 'РЈ' || book[0] == 'Сѓ'){//РїСЂРѕС†РµСЃ Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ e
                         system("cls");
                         char customer_name[255];
-                        printf("+----------------------------------------------------------------------------------------------------+\n");//введення в змінну customer_name прізвище та ім'я клієнта
-                        printf("|                                    Введіть ваше прізвище та ім'я:     Відмінити бронювання - w     |\n");
+                        printf("+----------------------------------------------------------------------------------------------------+\n");//РІРІРµРґРµРЅРЅСЏ РІ Р·РјС–РЅРЅСѓ customer_name РїСЂС–Р·РІРёС‰Рµ С‚Р° С–Рј'СЏ РєР»С–С”РЅС‚Р°
+                        printf("|                                    Р’РІРµРґС–С‚СЊ РІР°С€Рµ РїСЂС–Р·РІРёС‰Рµ С‚Р° С–Рј'СЏ:     Р’С–РґРјС–РЅРёС‚Рё Р±СЂРѕРЅСЋРІР°РЅРЅСЏ - w     |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
                         printf(": ");
                         scanf("%i", &customer_name);
                         fgets(customer_name, 255, stdin);
-                        if (customer_name[0] == 'W' || customer_name[0] == 'w' || customer_name[0] == 'Ц' || customer_name[0] == 'ц'){//відміна бронювання якщо введено w
+                        if (customer_name[0] == 'W' || customer_name[0] == 'w' || customer_name[0] == 'Р¦' || customer_name[0] == 'С†'){//РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                             goto prems;
                         }
                         else{
                             while( 1 ){
                                 system("cls");
                                 int booking_date;
-                                printf("+----------------------------------------------------------------------------------------------------+\n");//введення в змінну booking_date дату сеанса
-                                printf("|                                    Оберіть дату(введіть число 1-31):                               |\n");
+                                printf("+----------------------------------------------------------------------------------------------------+\n");//РІРІРµРґРµРЅРЅСЏ РІ Р·РјС–РЅРЅСѓ booking_date РґР°С‚Сѓ СЃРµР°РЅСЃР°
+                                printf("|                                    РћР±РµСЂС–С‚СЊ РґР°С‚Сѓ(РІРІРµРґС–С‚СЊ С‡РёСЃР»Рѕ 1-31):                               |\n");
                                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                                printf("Введіть число: ");
+                                printf("Р’РІРµРґС–С‚СЊ С‡РёСЃР»Рѕ: ");
                                 scanf("%d", &booking_date);
-                                getchar();//// Очистка буферу вводу щоб програма не зависала
-                                if((0 < booking_date) && (booking_date < 32)){//вибір дати сеанса
+                                getchar();//// РћС‡РёСЃС‚РєР° Р±СѓС„РµСЂСѓ РІРІРѕРґСѓ С‰РѕР± РїСЂРѕРіСЂР°РјР° РЅРµ Р·Р°РІРёСЃР°Р»Р°
+                                if((0 < booking_date) && (booking_date < 32)){//РІРёР±С–СЂ РґР°С‚Рё СЃРµР°РЅСЃР°
                                     while( 1 ){
                                         roffflan:
                                         system("cls");
                                         char seans[100];
                                         char time[100];
-                                        printf("+----------------------------------------------------------------------------------------------------+\n");//введення в змінну time час сеансу
-                                        printf("|                               Оберіть сеанс:                         Відмінити бронювання - w      |\n");
+                                        printf("+----------------------------------------------------------------------------------------------------+\n");//РІРІРµРґРµРЅРЅСЏ РІ Р·РјС–РЅРЅСѓ time С‡Р°СЃ СЃРµР°РЅСЃСѓ
+                                        printf("|                               РћР±РµСЂС–С‚СЊ СЃРµР°РЅСЃ:                         Р’С–РґРјС–РЅРёС‚Рё Р±СЂРѕРЅСЋРІР°РЅРЅСЏ - w      |\n");
                                         printf("+----------------------------------------------------------------------------------------------------+\n");
                                         printf("|            10:40 - 1           19:30 - 4                                                           |\n");
                                         printf("|            12:40 - 2                                                                               |\n");
                                         printf("|            15:50 - 3                                                                               |\n");
                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                        printf("Вибір опції: ");
+                                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                         scanf("%s", &seans);
-                                        if (seans[0] == 'W' || seans[0] == 'w' || seans[0] == 'Ц' || seans[0] == 'ц'){//відміна бронювання якщо введено w
+                                        if (seans[0] == 'W' || seans[0] == 'w' || seans[0] == 'Р¦' || seans[0] == 'С†'){//РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                             goto prems;
                                         }
-                                        if(seans[0] == '1'){//варіанти сеансів
+                                        if(seans[0] == '1'){//РІР°СЂС–Р°РЅС‚Рё СЃРµР°РЅСЃС–РІ
                                            strncpy(time, "10:40", sizeof(time));
                                            goto seats;
                                         }
@@ -224,7 +224,7 @@ int main() {
                                            goto seats;
                                         }
                                         else{
-                                            goto roffflan;//якщо введено щось інше, то goto 
+                                            goto roffflan;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ goto 
                                         }
                                     
                                         seats:
@@ -235,29 +235,29 @@ int main() {
                                         char query[100];
                                         while( 1 ){
                                             system("cls");
-                                            printf("+----------------------------------------------------------------------------------------------------+\n");//вибір місця в кінотеатрі в змінні tuppl та price вносяться дані про тип місця та ціну в залежності від номеру місця
-                                            printf("|                               Оберіть місце:     | Про Vip місця - v, Відмінити бронювання - w     |\n");
+                                            printf("+----------------------------------------------------------------------------------------------------+\n");//РІРёР±С–СЂ РјС–СЃС†СЏ РІ РєС–РЅРѕС‚РµР°С‚СЂС– РІ Р·РјС–РЅРЅС– tuppl С‚Р° price РІРЅРѕСЃСЏС‚СЊСЃСЏ РґР°РЅС– РїСЂРѕ С‚РёРї РјС–СЃС†СЏ С‚Р° С†С–РЅСѓ РІ Р·Р°Р»РµР¶РЅРѕСЃС‚С– РІС–Рґ РЅРѕРјРµСЂСѓ РјС–СЃС†СЏ
+                                            printf("|                               РћР±РµСЂС–С‚СЊ РјС–СЃС†Рµ:     | РџСЂРѕ Vip РјС–СЃС†СЏ - v, Р’С–РґРјС–РЅРёС‚Рё Р±СЂРѕРЅСЋРІР°РЅРЅСЏ - w     |\n");
                                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                                            printf("|                      Звичайне місце(1-90) - 130 грн, Vip місце(91-104) - 230грн                    |\n");
+                                            printf("|                      Р—РІРёС‡Р°Р№РЅРµ РјС–СЃС†Рµ(1-90) - 130 РіСЂРЅ, Vip РјС–СЃС†Рµ(91-104) - 230РіСЂРЅ                    |\n");
                                             printf("|                        ______________-------------------------______________                       |\n");
-                                            printf("|           ____________(                        Екран                        )____________          |\n");
+                                            printf("|           ____________(                        Р•РєСЂР°РЅ                        )____________          |\n");
                                             printf("|                                                                                                    |\n");
                                             printf("|                                                                                                    |\n");
                                             printf("|                                                                                                    |\n");
                                             printf("|             (  ( 1) ( 2) ( 3) ( 4) ( 5) ( 6) ( 7) ( 8) ( 9) (10) (11) (12) (13) (14)               |\n");
                                             printf("|            (   (15) (16) (17) (18) (19) (20) (21) (22) (23) (24) (25) (26) (27) (28)               |\n");
                                             printf("|           (    (29) (30) (31) (32) (33) (34) (35) (36) (37) (38) (39) (40) (41) (42)               |\n");
-                                            printf("| Звичайні:(               (43) (44) (45) (46) (47) (48) (49) (50) (51) (52) (53) (54)               |\n");     
+                                            printf("| Р—РІРёС‡Р°Р№РЅС–:(               (43) (44) (45) (46) (47) (48) (49) (50) (51) (52) (53) (54)               |\n");     
                                             printf("|           (              (55) (56) (57) (58) (59) (60) (61) (62) (63) (64) (65) (66)               |\n");
                                             printf("|            (             (67) (68) (69) (70) (71) (72) (73) (74) (75) (76) (77) (78)               |\n");
                                             printf("|             (            (79) (80) (81) (82) (83) (84) (85) (86) (87) (88) (89) (90)               |\n");
                                             printf("| Vip:    ( 91) ( 92) ( 93) ( 94) ( 95) ( 96) ( 97) ( 98) ( 99) (100) (101) (102) (103) (104)        |\n");
                                             printf("|                                                                                                    |\n");
                                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                                            printf("Вибір опції: ");
+                                            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                             scanf("%s", &seats);
                                             char query[1000];
-                                            sprintf(query, "SELECT COUNT(*) FROM tickets WHERE film_name = '%s' AND booking_date = '%d' AND seans = '%s' AND seats = '%s';", namef, booking_date, time, seats);//перевірка, чи не заброньований вже квиток на цю дату, в цей час, на цей фільм
+                                            sprintf(query, "SELECT COUNT(*) FROM tickets WHERE film_name = '%s' AND booking_date = '%d' AND seans = '%s' AND seats = '%s';", namef, booking_date, time, seats);//РїРµСЂРµРІС–СЂРєР°, С‡Рё РЅРµ Р·Р°Р±СЂРѕРЅСЊРѕРІР°РЅРёР№ РІР¶Рµ РєРІРёС‚РѕРє РЅР° С†СЋ РґР°С‚Сѓ, РІ С†РµР№ С‡Р°СЃ, РЅР° С†РµР№ С„С–Р»СЊРј
                                             sqlite3_stmt* stmt;
                                             int result = sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
                                             if (result == SQLITE_OK) {
@@ -269,104 +269,104 @@ int main() {
                                                     while( 1 ){
                                                         system("cls");
                                                         char error2[100];
-                                                        printf("+----------------------------------------------------------------------------------------------------+\n");//якщо користувач хоче зайняти місце, але воно вже зайняте виводиться дане попереджеення
+                                                        printf("+----------------------------------------------------------------------------------------------------+\n");//СЏРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ С…РѕС‡Рµ Р·Р°Р№РЅСЏС‚Рё РјС–СЃС†Рµ, Р°Р»Рµ РІРѕРЅРѕ РІР¶Рµ Р·Р°Р№РЅСЏС‚Рµ РІРёРІРѕРґРёС‚СЊСЃСЏ РґР°РЅРµ РїРѕРїРµСЂРµРґР¶РµРµРЅРЅСЏ
                                                         printf("|                                                                                                    |\n");
                                                         printf("|                                                                                                    |\n");
                                                         printf("|                                                                                                    |\n");
-                                                        printf("|                                   Місце номер %s вже заброньоване                                  |\n", seats);                                                 
+                                                        printf("|                                   РњС–СЃС†Рµ РЅРѕРјРµСЂ %s РІР¶Рµ Р·Р°Р±СЂРѕРЅСЊРѕРІР°РЅРµ                                  |\n", seats);                                                 
                                                         printf("|                                                                                                    |\n");
                                                         printf("|                                                                                                    |\n");
                                                         printf("|                                                                                                    |\n");
                                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                        printf("|                                              Назад - w                                             |\n");
+                                                        printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                        printf("Вибір опції: ");
+                                                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                                         scanf("%s", &error2);
-                                                        if (error2[0] == 'W' || error2[0] == 'w' || error2[0] == 'Ц' || error2[0] == 'ц'){//назад якщо введено w
+                                                        if (error2[0] == 'W' || error2[0] == 'w' || error2[0] == 'Р¦' || error2[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                                             goto seats;
                                                         }
                                                         else{
-                                                            ;//якщо введено щось інше, то цикл починається наново
+                                                            ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                                         }
                                                     }
                                                 }
                                             }
 
-                                            if(strcmp(seats, "1") == 0 || strcmp(seats, "2") == 0 || strcmp(seats, "3") == 0 || strcmp(seats, "4") == 0 || strcmp(seats, "5") == 0 || strcmp(seats, "6") == 0 || strcmp(seats, "7") == 0 || strcmp(seats, "8") == 0 || strcmp(seats, "9") == 0 || strcmp(seats, "10") == 0 || strcmp(seats, "11") == 0 || strcmp(seats, "12") == 0 || strcmp(seats, "13") == 0 || strcmp(seats, "14") == 0 || strcmp(seats, "15") == 0 || strcmp(seats, "16") == 0 || strcmp(seats, "17") == 0 || strcmp(seats, "18") == 0 || strcmp(seats, "19") == 0 || strcmp(seats, "20") == 0 || strcmp(seats, "21") == 0 || strcmp(seats, "22") == 0 || strcmp(seats, "23") == 0 || strcmp(seats, "24") == 0 || strcmp(seats, "25") == 0 || strcmp(seats, "26") == 0 || strcmp(seats, "27") == 0 || strcmp(seats, "28") == 0 || strcmp(seats, "29") == 0 || strcmp(seats, "30") == 0 || strcmp(seats, "31") == 0 || strcmp(seats, "32") == 0 || strcmp(seats, "33") == 0 || strcmp(seats, "34") == 0 || strcmp(seats, "35") == 0 || strcmp(seats, "36") == 0 || strcmp(seats, "37") == 0 || strcmp(seats, "38") == 0 || strcmp(seats, "39") == 0 || strcmp(seats, "40") == 0 || strcmp(seats, "41") == 0 || strcmp(seats, "42") == 0 || strcmp(seats, "43") == 0 || strcmp(seats, "44") == 0 || strcmp(seats, "45") == 0 || strcmp(seats, "46") == 0 || strcmp(seats, "47") == 0 || strcmp(seats, "48") == 0 || strcmp(seats, "49") == 0 || strcmp(seats, "50") == 0 || strcmp(seats, "51") == 0 || strcmp(seats, "52") == 0 || strcmp(seats, "53") == 0 || strcmp(seats, "54") == 0 || strcmp(seats, "55") == 0 || strcmp(seats, "56") == 0 || strcmp(seats, "57") == 0 || strcmp(seats, "58") == 0 || strcmp(seats, "59") == 0 || strcmp(seats, "60") == 0 || strcmp(seats, "61") == 0 || strcmp(seats, "62") == 0 || strcmp(seats, "63") == 0 || strcmp(seats, "64") == 0 || strcmp(seats, "65") == 0 || strcmp(seats, "66") == 0 || strcmp(seats, "67") == 0 || strcmp(seats, "68") == 0 || strcmp(seats, "69") == 0 || strcmp(seats, "70") == 0 || strcmp(seats, "71") == 0 || strcmp(seats, "72") == 0 || strcmp(seats, "73") == 0 || strcmp(seats, "74") == 0 || strcmp(seats, "75") == 0 || strcmp(seats, "76") == 0 || strcmp(seats, "77") == 0 || strcmp(seats, "78") == 0 || strcmp(seats, "79") == 0 || strcmp(seats, "80") == 0 || strcmp(seats, "81") == 0 || strcmp(seats, "82") == 0 || strcmp(seats, "83") == 0 || strcmp(seats, "84") == 0 || strcmp(seats, "85") == 0 || strcmp(seats, "86") == 0 || strcmp(seats, "87") == 0 || strcmp(seats, "88") == 0 || strcmp(seats, "89") == 0 || strcmp(seats, "90") == 0){//якщо місце від 1 до 90, то в змінні вноситься місце яке обрав користувач, ціна, та тип місця.
-                                                strncpy(tuppl, "звичайне", sizeof(tuppl));//внесення в зміну дані про тип місця та ціну квитка
-                                                strncpy(price, "130 грн", sizeof(price));
+                                            if(strcmp(seats, "1") == 0 || strcmp(seats, "2") == 0 || strcmp(seats, "3") == 0 || strcmp(seats, "4") == 0 || strcmp(seats, "5") == 0 || strcmp(seats, "6") == 0 || strcmp(seats, "7") == 0 || strcmp(seats, "8") == 0 || strcmp(seats, "9") == 0 || strcmp(seats, "10") == 0 || strcmp(seats, "11") == 0 || strcmp(seats, "12") == 0 || strcmp(seats, "13") == 0 || strcmp(seats, "14") == 0 || strcmp(seats, "15") == 0 || strcmp(seats, "16") == 0 || strcmp(seats, "17") == 0 || strcmp(seats, "18") == 0 || strcmp(seats, "19") == 0 || strcmp(seats, "20") == 0 || strcmp(seats, "21") == 0 || strcmp(seats, "22") == 0 || strcmp(seats, "23") == 0 || strcmp(seats, "24") == 0 || strcmp(seats, "25") == 0 || strcmp(seats, "26") == 0 || strcmp(seats, "27") == 0 || strcmp(seats, "28") == 0 || strcmp(seats, "29") == 0 || strcmp(seats, "30") == 0 || strcmp(seats, "31") == 0 || strcmp(seats, "32") == 0 || strcmp(seats, "33") == 0 || strcmp(seats, "34") == 0 || strcmp(seats, "35") == 0 || strcmp(seats, "36") == 0 || strcmp(seats, "37") == 0 || strcmp(seats, "38") == 0 || strcmp(seats, "39") == 0 || strcmp(seats, "40") == 0 || strcmp(seats, "41") == 0 || strcmp(seats, "42") == 0 || strcmp(seats, "43") == 0 || strcmp(seats, "44") == 0 || strcmp(seats, "45") == 0 || strcmp(seats, "46") == 0 || strcmp(seats, "47") == 0 || strcmp(seats, "48") == 0 || strcmp(seats, "49") == 0 || strcmp(seats, "50") == 0 || strcmp(seats, "51") == 0 || strcmp(seats, "52") == 0 || strcmp(seats, "53") == 0 || strcmp(seats, "54") == 0 || strcmp(seats, "55") == 0 || strcmp(seats, "56") == 0 || strcmp(seats, "57") == 0 || strcmp(seats, "58") == 0 || strcmp(seats, "59") == 0 || strcmp(seats, "60") == 0 || strcmp(seats, "61") == 0 || strcmp(seats, "62") == 0 || strcmp(seats, "63") == 0 || strcmp(seats, "64") == 0 || strcmp(seats, "65") == 0 || strcmp(seats, "66") == 0 || strcmp(seats, "67") == 0 || strcmp(seats, "68") == 0 || strcmp(seats, "69") == 0 || strcmp(seats, "70") == 0 || strcmp(seats, "71") == 0 || strcmp(seats, "72") == 0 || strcmp(seats, "73") == 0 || strcmp(seats, "74") == 0 || strcmp(seats, "75") == 0 || strcmp(seats, "76") == 0 || strcmp(seats, "77") == 0 || strcmp(seats, "78") == 0 || strcmp(seats, "79") == 0 || strcmp(seats, "80") == 0 || strcmp(seats, "81") == 0 || strcmp(seats, "82") == 0 || strcmp(seats, "83") == 0 || strcmp(seats, "84") == 0 || strcmp(seats, "85") == 0 || strcmp(seats, "86") == 0 || strcmp(seats, "87") == 0 || strcmp(seats, "88") == 0 || strcmp(seats, "89") == 0 || strcmp(seats, "90") == 0){//СЏРєС‰Рѕ РјС–СЃС†Рµ РІС–Рґ 1 РґРѕ 90, С‚Рѕ РІ Р·РјС–РЅРЅС– РІРЅРѕСЃРёС‚СЊСЃСЏ РјС–СЃС†Рµ СЏРєРµ РѕР±СЂР°РІ РєРѕСЂРёСЃС‚СѓРІР°С‡, С†С–РЅР°, С‚Р° С‚РёРї РјС–СЃС†СЏ.
+                                                strncpy(tuppl, "Р·РІРёС‡Р°Р№РЅРµ", sizeof(tuppl));//РІРЅРµСЃРµРЅРЅСЏ РІ Р·РјС–РЅСѓ РґР°РЅС– РїСЂРѕ С‚РёРї РјС–СЃС†СЏ С‚Р° С†С–РЅСѓ РєРІРёС‚РєР°
+                                                strncpy(price, "130 РіСЂРЅ", sizeof(price));
                                                 goto finish1;
                                             }
-                                            if(strcmp(seats, "91")==0 || strcmp(seats, "92")==0 || strcmp(seats, "93")==0 || strcmp(seats, "94")==0 || strcmp(seats, "95")==0 || strcmp(seats, "96")==0 || strcmp(seats, "97")==0 || strcmp(seats, "98")==0 || strcmp(seats, "99")==0 || strcmp(seats, "100")==0 || strcmp(seats, "101")==0 || strcmp(seats, "102")==0 || strcmp(seats, "103")==0 || strcmp(seats, "103")==0){//якщо місце від 91 до 103, то в змінні вноситься місце яке обрав користувач, ціна, та тип місця.
-                                                strncpy(tuppl, "Vip", sizeof(tuppl));//внесення в зміну дані про тип місця та ціну квитка
-                                                strncpy(price, "230 грн", sizeof(price));
+                                            if(strcmp(seats, "91")==0 || strcmp(seats, "92")==0 || strcmp(seats, "93")==0 || strcmp(seats, "94")==0 || strcmp(seats, "95")==0 || strcmp(seats, "96")==0 || strcmp(seats, "97")==0 || strcmp(seats, "98")==0 || strcmp(seats, "99")==0 || strcmp(seats, "100")==0 || strcmp(seats, "101")==0 || strcmp(seats, "102")==0 || strcmp(seats, "103")==0 || strcmp(seats, "103")==0){//СЏРєС‰Рѕ РјС–СЃС†Рµ РІС–Рґ 91 РґРѕ 103, С‚Рѕ РІ Р·РјС–РЅРЅС– РІРЅРѕСЃРёС‚СЊСЃСЏ РјС–СЃС†Рµ СЏРєРµ РѕР±СЂР°РІ РєРѕСЂРёСЃС‚СѓРІР°С‡, С†С–РЅР°, С‚Р° С‚РёРї РјС–СЃС†СЏ.
+                                                strncpy(tuppl, "Vip", sizeof(tuppl));//РІРЅРµСЃРµРЅРЅСЏ РІ Р·РјС–РЅСѓ РґР°РЅС– РїСЂРѕ С‚РёРї РјС–СЃС†СЏ С‚Р° С†С–РЅСѓ РєРІРёС‚РєР°
+                                                strncpy(price, "230 РіСЂРЅ", sizeof(price));
                                                 goto finish1;
                                             }
 
-                                            if (seats[0] == 'W' || seats[0] == 'w' || seats[0] == 'Ц' || seats[0] == 'ц'){//відміна бронювання якщо введено w
+                                            if (seats[0] == 'W' || seats[0] == 'w' || seats[0] == 'Р¦' || seats[0] == 'С†'){//РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                                 goto prems;
                                             }
-                                            if (seats[0] == 'V' || seats[0] == 'v' || seats[0] == 'М' || seats[0] == 'м'){//вивід описа місць якщо ввести v
+                                            if (seats[0] == 'V' || seats[0] == 'v' || seats[0] == 'Рњ' || seats[0] == 'Рј'){//РІРёРІС–Рґ РѕРїРёСЃР° РјС–СЃС†СЊ СЏРєС‰Рѕ РІРІРµСЃС‚Рё v
                                                 while ( 1 ){
                                                     system("cls");
                                                     char vip[100];
-                                                    printf("+----------------------------------------------------------------------------------------------------+\n");// опис Vip місць
-                                                    printf("|                                           Про vip місця                       Вибір місця - w      |\n");
+                                                    printf("+----------------------------------------------------------------------------------------------------+\n");// РѕРїРёСЃ Vip РјС–СЃС†СЊ
+                                                    printf("|                                           РџСЂРѕ vip РјС–СЃС†СЏ                       Р’РёР±С–СЂ РјС–СЃС†СЏ - w      |\n");
                                                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                    printf("| Це комфортні шкіряні крісла з пультом керування, які змінюють положення вашого тіла до лежачого.   |\n");
-                                                    printf("| Мають розкладну підставку для ніг та підлокітники, на яких легко розмістити найбільше відро        |\n");
-                                                    printf("| попкорну та прохолодний напій, не заважаючи сусідові. Вибираючи VIP-місця для перегляду фільму у   |\n");
-                                                    printf("| remove_the_cinema, ви відчуєте більше!                                                             |\n");
+                                                    printf("| Р¦Рµ РєРѕРјС„РѕСЂС‚РЅС– С€РєС–СЂСЏРЅС– РєСЂС–СЃР»Р° Р· РїСѓР»СЊС‚РѕРј РєРµСЂСѓРІР°РЅРЅСЏ, СЏРєС– Р·РјС–РЅСЋСЋС‚СЊ РїРѕР»РѕР¶РµРЅРЅСЏ РІР°С€РѕРіРѕ С‚С–Р»Р° РґРѕ Р»РµР¶Р°С‡РѕРіРѕ.   |\n");
+                                                    printf("| РњР°СЋС‚СЊ СЂРѕР·РєР»Р°РґРЅСѓ РїС–РґСЃС‚Р°РІРєСѓ РґР»СЏ РЅС–Рі С‚Р° РїС–РґР»РѕРєС–С‚РЅРёРєРё, РЅР° СЏРєРёС… Р»РµРіРєРѕ СЂРѕР·РјС–СЃС‚РёС‚Рё РЅР°Р№Р±С–Р»СЊС€Рµ РІС–РґСЂРѕ        |\n");
+                                                    printf("| РїРѕРїРєРѕСЂРЅСѓ С‚Р° РїСЂРѕС…РѕР»РѕРґРЅРёР№ РЅР°РїС–Р№, РЅРµ Р·Р°РІР°Р¶Р°СЋС‡Рё СЃСѓСЃС–РґРѕРІС–. Р’РёР±РёСЂР°СЋС‡Рё VIP-РјС–СЃС†СЏ РґР»СЏ РїРµСЂРµРіР»СЏРґСѓ С„С–Р»СЊРјСѓ Сѓ   |\n");
+                                                    printf("| remove_the_cinema, РІРё РІС–РґС‡СѓС”С‚Рµ Р±С–Р»СЊС€Рµ!                                                             |\n");
                                                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                    printf("Вибір опції: ");
+                                                    printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                                     scanf("%s", &vip);
-                                                    if  (vip[0] == 'W' || vip[0] == 'w' || vip[0] == 'Ц' || vip[0] == 'ц'){//повернення до вибору місць якщо введено w
+                                                    if  (vip[0] == 'W' || vip[0] == 'w' || vip[0] == 'Р¦' || vip[0] == 'С†'){//РїРѕРІРµСЂРЅРµРЅРЅСЏ РґРѕ РІРёР±РѕСЂСѓ РјС–СЃС†СЊ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                                         goto seats;
                                                     }
                                                     else{
-                                                        ;//якщо введено щось інше, то цикл починається наново
+                                                        ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                                     }
 
                                                 }
                                             }
                                             else{
-                                                ;//якщо введено щось інше, то цикл починається наново
+                                                ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                             }
                                         }
                                         
                                         finish1:
-                                        sprintf(sql, "insert into tickets(film_name, customer_name, booking_date, seans, seats, tuppl, price, paystatus) values('%s', '%s', '%d', '%s', '%s', '%s', '%s', 'не оплачено');", namef, customer_name, booking_date, time, seats, tuppl, price);//введення в базу даних квитків інформацію зі змінних яку ми отримали раніше
+                                        sprintf(sql, "insert into tickets(film_name, customer_name, booking_date, seans, seats, tuppl, price, paystatus) values('%s', '%s', '%d', '%s', '%s', '%s', '%s', 'РЅРµ РѕРїР»Р°С‡РµРЅРѕ');", namef, customer_name, booking_date, time, seats, tuppl, price);//РІРІРµРґРµРЅРЅСЏ РІ Р±Р°Р·Сѓ РґР°РЅРёС… РєРІРёС‚РєС–РІ С–РЅС„РѕСЂРјР°С†С–СЋ Р·С– Р·РјС–РЅРЅРёС… СЏРєСѓ РјРё РѕС‚СЂРёРјР°Р»Рё СЂР°РЅС–С€Рµ
                                         rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
                                         while( 1 ){
                                             system("cls");
                                             char finish[100];
-                                            printf("+----------------------------------------------------------------------------------------------------+\n");// завершення бронювання дані про цей квиток уже в базі даних і користувач може одразу перейди до квитків
-                                            printf("|                                       Бронювання завершено!                    Меню - w            |\n");
+                                            printf("+----------------------------------------------------------------------------------------------------+\n");// Р·Р°РІРµСЂС€РµРЅРЅСЏ Р±СЂРѕРЅСЋРІР°РЅРЅСЏ РґР°РЅС– РїСЂРѕ С†РµР№ РєРІРёС‚РѕРє СѓР¶Рµ РІ Р±Р°Р·С– РґР°РЅРёС… С– РєРѕСЂРёСЃС‚СѓРІР°С‡ РјРѕР¶Рµ РѕРґСЂР°Р·Сѓ РїРµСЂРµР№РґРё РґРѕ РєРІРёС‚РєС–РІ
+                                            printf("|                                       Р‘СЂРѕРЅСЋРІР°РЅРЅСЏ Р·Р°РІРµСЂС€РµРЅРѕ!                    РњРµРЅСЋ - w            |\n");
                                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                                            printf("|                                      Перейти до квитків - k                                        |\n");
-                                            printf("|   Інформація по бронюванню:                                                                        |\n");
-                                            cool_design(bymam2, 88);//вивід інформації про бронювання через функцію 
+                                            printf("|                                      РџРµСЂРµР№С‚Рё РґРѕ РєРІРёС‚РєС–РІ - k                                        |\n");
+                                            printf("|   Р†РЅС„РѕСЂРјР°С†С–СЏ РїРѕ Р±СЂРѕРЅСЋРІР°РЅРЅСЋ:                                                                        |\n");
+                                            cool_design(bymam2, 88);//РІРёРІС–Рґ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ Р±СЂРѕРЅСЋРІР°РЅРЅСЏ С‡РµСЂРµР· С„СѓРЅРєС†С–СЋ 
                                             cool_design(time, 88);
                                             cool_design(seats, 88);
                                             cool_design(tuppl, 88);
                                             cool_design(price, 88);
                                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                                            printf("Вибір опції: ");
+                                            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                             scanf("%s", &finish);
-                                            if  (finish[0] == 'W' || finish[0] == 'w' || finish[0] == 'Ц' || finish[0] == 'ц'){//перехід до меню 
+                                            if  (finish[0] == 'W' || finish[0] == 'w' || finish[0] == 'Р¦' || finish[0] == 'С†'){//РїРµСЂРµС…С–Рґ РґРѕ РјРµРЅСЋ 
                                                 goto one;
                                             }
-                                            if  (finish[0] == 'K' || finish[0] == 'k' || finish[0] == 'Л' || finish[0] == 'л'){//перехід до квитків
+                                            if  (finish[0] == 'K' || finish[0] == 'k' || finish[0] == 'Р›' || finish[0] == 'Р»'){//РїРµСЂРµС…С–Рґ РґРѕ РєРІРёС‚РєС–РІ
                                                 goto tickets;
                                             }
-                                            else{//щось інше, цикл починається наново
+                                            else{//С‰РѕСЃСЊ С–РЅС€Рµ, С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                                 ;
                                             }
                                         }   
                                     }
                                 }
                                 else{
-                                    ;//якщо введено щось інше, то цикл починається наново
+                                    ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                 }
                             }
                         }
@@ -381,12 +381,12 @@ int main() {
             while ( 1 ){
                 tickets:
                 system("cls");
-                printf("+----------------------------------------------------------------------------------------------------+\n");// вибірка квитків з бази даних (не повна інформація)
-                printf("                                                Квитки:                 | Оберіть квиток |            \n");
+                printf("+----------------------------------------------------------------------------------------------------+\n");// РІРёР±С–СЂРєР° РєРІРёС‚РєС–РІ Р· Р±Р°Р·Рё РґР°РЅРёС… (РЅРµ РїРѕРІРЅР° С–РЅС„РѕСЂРјР°С†С–СЏ)
+                printf("                                                РљРІРёС‚РєРё:                 | РћР±РµСЂС–С‚СЊ РєРІРёС‚РѕРє |            \n");
                 sqlite3_stmt *ticket;
                 rc = sqlite3_prepare_v2(db, "SELECT * FROM tickets;", -1, &ticket, 0);
                 int cols = sqlite3_column_count(ticket);
-                while (sqlite3_step(ticket) == SQLITE_ROW) {//вивід квитка з бази даних tickets 
+                while (sqlite3_step(ticket) == SQLITE_ROW) {//РІРёРІС–Рґ РєРІРёС‚РєР° Р· Р±Р°Р·Рё РґР°РЅРёС… tickets 
                     const unsigned char *id = sqlite3_column_text(ticket, 0);
                     printf("%s - ",id);
                     const unsigned char *film_name = sqlite3_column_text(ticket, 1);
@@ -399,19 +399,19 @@ int main() {
                     printf("%s;\n",paystatus);
                 };
                 printf("                                                                                                      \n");
-                printf("                                               Меню - w                                               \n");
+                printf("                                               РњРµРЅСЋ - w                                               \n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
                 char tick[256];
-                printf("Вибір опції: ");
+                printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                 scanf("%s", tick);
                 system("cls");
-                if (tick[0] == 'W' || tick[0] == 'w' || tick[0] == 'Ц' || tick[0] == 'ц'){//меню якщо введено w
+                if (tick[0] == 'W' || tick[0] == 'w' || tick[0] == 'Р¦' || tick[0] == 'С†'){//РјРµРЅСЋ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                     goto one;
                 }
                 sqlite3_stmt *pooping;
                 char query[1000];
                  
-                sprintf(query, "SELECT COUNT(*) FROM tickets WHERE id = %s;", tick);//перевірка існування білета
+                sprintf(query, "SELECT COUNT(*) FROM tickets WHERE id = %s;", tick);//РїРµСЂРµРІС–СЂРєР° С–СЃРЅСѓРІР°РЅРЅСЏ Р±С–Р»РµС‚Р°
                 rc = sqlite3_prepare_v2(db, query, -1, &pooping, NULL);
                 if (sqlite3_step(pooping) == SQLITE_ROW) {
                     int ticketCount = sqlite3_column_int(pooping, 0);
@@ -419,24 +419,24 @@ int main() {
                         while ( 1 ){
                             system("cls");
                             char error1[100];
-                            printf("+----------------------------------------------------------------------------------------------------+\n");//якщо користувач вводить id квитка якого немає, то виводиться дана помилка
+                            printf("+----------------------------------------------------------------------------------------------------+\n");//СЏРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ РІРІРѕРґРёС‚СЊ id РєРІРёС‚РєР° СЏРєРѕРіРѕ РЅРµРјР°С”, С‚Рѕ РІРёРІРѕРґРёС‚СЊСЃСЏ РґР°РЅР° РїРѕРјРёР»РєР°
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
-                            printf("|                                Квиток с ID %s не знайдено в базі даних.                             |\n", tick);                                                 
+                            printf("|                                РљРІРёС‚РѕРє СЃ ID %s РЅРµ Р·РЅР°Р№РґРµРЅРѕ РІ Р±Р°Р·С– РґР°РЅРёС….                             |\n", tick);                                                 
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("|                                              Назад - w                                             |\n");
+                            printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("Вибір опції: ");
+                            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                             scanf("%s", &error1);
-                            if (error1[0] == 'W' || error1[0] == 'w' || error1[0] == 'Ц' || error1[0] == 'ц'){//назад якщо введено w
+                            if (error1[0] == 'W' || error1[0] == 'w' || error1[0] == 'Р¦' || error1[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                 goto tickets;
                             }
                             else{
-                                ;//якщо введено щось інше, то цикл починається наново
+                                ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                             }
                         }
                     }
@@ -444,22 +444,22 @@ int main() {
                         sprintf(query, "SELECT * FROM tickets WHERE id = %s;", tick);
 
                         rc = sqlite3_prepare_v2(db, query, -1, &pooping, NULL);
-                        printf("+----------------------------------------------------------------------------------------------------+\n");// після вибору квитка виводиться повна інформація з бази даних про цей квиток 
+                        printf("+----------------------------------------------------------------------------------------------------+\n");// РїС–СЃР»СЏ РІРёР±РѕСЂСѓ РєРІРёС‚РєР° РІРёРІРѕРґРёС‚СЊСЃСЏ РїРѕРІРЅР° С–РЅС„РѕСЂРјР°С†С–СЏ Р· Р±Р°Р·Рё РґР°РЅРёС… РїСЂРѕ С†РµР№ РєРІРёС‚РѕРє 
                         while (sqlite3_step(pooping) == SQLITE_ROW) {
                             const unsigned char *id = sqlite3_column_text(pooping, 0);
                             printf("%s - ", id);
                             const unsigned char *film_name = sqlite3_column_text(pooping, 1);
-                            printf("%s, прізвище  та ім'я - ", film_name);
+                            printf("%s, РїСЂС–Р·РІРёС‰Рµ  С‚Р° С–Рј'СЏ - ", film_name);
                             const unsigned char *customer_name = sqlite3_column_text(pooping, 2);
-                            printf("%sдата - ", customer_name);
+                            printf("%sРґР°С‚Р° - ", customer_name);
                             const unsigned char *booking_date = sqlite3_column_text(pooping, 3);
-                            printf("%s, сеанс - ", booking_date);
+                            printf("%s, СЃРµР°РЅСЃ - ", booking_date);
                             const unsigned char *seans = sqlite3_column_text(pooping, 4);
-                            printf("%s, місце - ", seans);
+                            printf("%s, РјС–СЃС†Рµ - ", seans);
                             const unsigned char *seats = sqlite3_column_text(pooping, 5);
-                            printf("%s, тип місця - ", seats);
+                            printf("%s, С‚РёРї РјС–СЃС†СЏ - ", seats);
                             const unsigned char *tuppl = sqlite3_column_text(pooping, 6);
-                            printf("%s, ціна - ", tuppl);
+                            printf("%s, С†С–РЅР° - ", tuppl);
                             const unsigned char *price = sqlite3_column_text(pooping, 7);
                             printf("%s, ", price);
                             const unsigned char *paystatus = sqlite3_column_text(pooping, 8);
@@ -471,111 +471,111 @@ int main() {
                     while ( 1 ){
                         system("cls");
                         char error2[100];
-                        printf("+----------------------------------------------------------------------------------------------------+\n");//якщо користувач нажимає на рандомні клавіші і вводе їх, то виводиться дана помилка
+                        printf("+----------------------------------------------------------------------------------------------------+\n");//СЏРєС‰Рѕ РєРѕСЂРёСЃС‚СѓРІР°С‡ РЅР°Р¶РёРјР°С” РЅР° СЂР°РЅРґРѕРјРЅС– РєР»Р°РІС–С€С– С– РІРІРѕРґРµ С—С…, С‚Рѕ РІРёРІРѕРґРёС‚СЊСЃСЏ РґР°РЅР° РїРѕРјРёР»РєР°
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
-                        printf("|                                    Помилка при виконанні запиту...                                 |\n", tick);                                                 
+                        printf("|                                    РџРѕРјРёР»РєР° РїСЂРё РІРёРєРѕРЅР°РЅРЅС– Р·Р°РїРёС‚Сѓ...                                 |\n", tick);                                                 
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("|                                              Назад - w                                             |\n");
+                        printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("Вибір опції: ");
+                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                         scanf("%s", &error2);
-                        if (error2[0] == 'W' || error2[0] == 'w' || error2[0] == 'Ц' || error2[0] == 'ц'){//назад якщо введено w
+                        if (error2[0] == 'W' || error2[0] == 'w' || error2[0] == 'Р¦' || error2[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                             goto tickets;
                         }
                         else{
-                            ;//якщо введено щось інше, то цикл починається наново
+                            ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                         }
                     }
                 }
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("                        Квитки - w  | Сплатити квиток - e | Відмінити бронювання - r                  \n");
+                printf("                        РљРІРёС‚РєРё - w  | РЎРїР»Р°С‚РёС‚Рё РєРІРёС‚РѕРє - e | Р’С–РґРјС–РЅРёС‚Рё Р±СЂРѕРЅСЋРІР°РЅРЅСЏ - r                  \n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("Вибір опції: ");
+                printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                 char book[100];
                 scanf("%s", &book);
-                if (book[0] == 'W' || book[0] == 'w' || book[0] == 'Ц' || book[0] == 'ц'){//квитки якщо введено w
+                if (book[0] == 'W' || book[0] == 'w' || book[0] == 'Р¦' || book[0] == 'С†'){//РєРІРёС‚РєРё СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                     goto tickets;
                 }
-                if (book[0] == 'E' || book[0] == 'e' || book[0] == 'У' || book[0] == 'у'){//оплата квитка якщо введено e
+                if (book[0] == 'E' || book[0] == 'e' || book[0] == 'РЈ' || book[0] == 'Сѓ'){//РѕРїР»Р°С‚Р° РєРІРёС‚РєР° СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ e
                     while( 1 ){
                         system("cls");
                         char pay[100];
                         sprintf(sql, "SELECT paystatus FROM tickets WHERE id = '%s';", tick);
-                        rc = sqlite3_exec(db, sql, callback_function, &pay, NULL); // тут callback_function - функція отримує значення стовпця paystatus і зберігає його в змінній pay
-                        if (strcmp(pay, "оплачено") == 0) {
-                            printf("+----------------------------------------------------------------------------------------------------+\n");// якщо квиток був оплачений раніше
+                        rc = sqlite3_exec(db, sql, callback_function, &pay, NULL); // С‚СѓС‚ callback_function - С„СѓРЅРєС†С–СЏ РѕС‚СЂРёРјСѓС” Р·РЅР°С‡РµРЅРЅСЏ СЃС‚РѕРІРїС†СЏ paystatus С– Р·Р±РµСЂС–РіР°С” Р№РѕРіРѕ РІ Р·РјС–РЅРЅС–Р№ pay
+                        if (strcmp(pay, "РѕРїР»Р°С‡РµРЅРѕ") == 0) {
+                            printf("+----------------------------------------------------------------------------------------------------+\n");// СЏРєС‰Рѕ РєРІРёС‚РѕРє Р±СѓРІ РѕРїР»Р°С‡РµРЅРёР№ СЂР°РЅС–С€Рµ
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
-                            printf("|                                    Квиток був оплачений раніше!                                    |\n");
+                            printf("|                                    РљРІРёС‚РѕРє Р±СѓРІ РѕРїР»Р°С‡РµРЅРёР№ СЂР°РЅС–С€Рµ!                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("|                                              Назад - w                                             |\n");
+                            printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("Вибір опції: ");
+                            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                             scanf("%s", &pay);
-                            if (pay[0] == 'W' || pay[0] == 'w' || pay[0] == 'Ц' || pay[0] == 'ц') {
+                            if (pay[0] == 'W' || pay[0] == 'w' || pay[0] == 'Р¦' || pay[0] == 'С†') {
                                 goto tickets;
                             }
                             else{
-                                ;//якщо введено щось інше, то цикл починається наново
+                                ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                             }
                         } else {
-                            sprintf(sql, "UPDATE tickets SET paystatus = 'оплачено' WHERE id = '%s';", tick);
+                            sprintf(sql, "UPDATE tickets SET paystatus = 'РѕРїР»Р°С‡РµРЅРѕ' WHERE id = '%s';", tick);
                             rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
-                            printf("+----------------------------------------------------------------------------------------------------+\n");//оплата квитка
+                            printf("+----------------------------------------------------------------------------------------------------+\n");//РѕРїР»Р°С‚Р° РєРІРёС‚РєР°
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
-                            printf("|                                             Оплачено!!!                                            |\n");
+                            printf("|                                             РћРїР»Р°С‡РµРЅРѕ!!!                                            |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("|                                                                                                    |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("|                                              Назад - w                                             |\n");
+                            printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("Вибір опції: ");
+                            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                             scanf("%s", &pay);
-                            if (pay[0] == 'W' || pay[0] == 'w' || pay[0] == 'Ц' || pay[0] == 'ц') {//назад якщо введено w
+                            if (pay[0] == 'W' || pay[0] == 'w' || pay[0] == 'Р¦' || pay[0] == 'С†') {//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                 goto tickets;
                             }
                             else{
-                                ;//якщо введено щось інше, то цикл починається наново
+                                ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                             }
                         }
                     }
                 }
-                if (book[0] == 'К' || book[0] == 'к' || book[0] == 'R' || book[0] == 'r'){//відміна бронювання якщо введено r
+                if (book[0] == 'Рљ' || book[0] == 'Рє' || book[0] == 'R' || book[0] == 'r'){//РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ r
                     while( 1 ){
                         system("cls");
                         char pay1[100];
                         sprintf(sql, "DELETE FROM tickets WHERE id = '%s';", tick);
                         rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
-                        printf("+----------------------------------------------------------------------------------------------------+\n");// відміна бронювання
+                        printf("+----------------------------------------------------------------------------------------------------+\n");// РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
-                        printf("|                                        Бронювання відмінилося!!!                                   |\n");
+                        printf("|                                        Р‘СЂРѕРЅСЋРІР°РЅРЅСЏ РІС–РґРјС–РЅРёР»РѕСЃСЏ!!!                                   |\n");
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("|                                                                                                    |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("|                                              Назад - w                                             |\n");
+                        printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("Вибір опції: ");
+                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                         scanf("%s", &pay1);
-                        if (pay1[0] == 'W' || pay1[0] == 'w' || pay1[0] == 'Ц' || pay1[0] == 'ц'){//назад якщо введено w
+                        if (pay1[0] == 'W' || pay1[0] == 'w' || pay1[0] == 'Р¦' || pay1[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                             goto tickets;
                         }
                         else{
-                            ;//якщо введено щось інше, то цикл починається наново
+                            ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                         }
                     }
                 }
@@ -583,25 +583,25 @@ int main() {
         }
 
 
-        if(menu=='3') {// інформація про программу якщо введено 3
+        if(menu=='3') {// С–РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїСЂРѕРіСЂР°РјРјСѓ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ 3
             char about[100];
             while( 1 ){
                 system("cls");
-                printf("+---------------------------------------------------------------------+-----------------------+------+\n");// інформація про программу для користувача
-                printf("| Version 1.0 release                        Про програму:            |developer - Andrew165#1|      |\n");
+                printf("+---------------------------------------------------------------------+-----------------------+------+\n");// С–РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РїСЂРѕРіСЂР°РјРјСѓ РґР»СЏ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°
+                printf("| Version 1.0 release                        РџСЂРѕ РїСЂРѕРіСЂР°РјСѓ:            |developer - Andrew165#1|      |\n");
                 printf("+---------------------------------------------------------------------+-----------------------+------+\n");
-                printf("| Привіт! Ласкаво просимо до програми по продажу квитків в кінотеатрі! Завдяки нашому сервісу ви     |\n");
-                printf("| зможете придбати квитки на сеанси у кінотеатрі швидко та зручно.                                   |\n");
-                printf("| Наша програма має дуже простий та зрозумілий інтерфейс. Все, що вам потрібно зробити, це вибрати   |\n");
-                printf("| фільм, на який ви хочете піти, вказати прізвище та ім'я, вибрати зручний для вас сеанс та          |\n");
-                printf("| забронювати квиток, помім в “Мої квитки” оплатити квиток. Ви також можете відмінити бронювання, але|\n");
-                printf("| якщо ви вже оплатили гроші ми вам не повернемо.                                                    |\n");
+                printf("| РџСЂРёРІС–С‚! Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ РґРѕ РїСЂРѕРіСЂР°РјРё РїРѕ РїСЂРѕРґР°Р¶Сѓ РєРІРёС‚РєС–РІ РІ РєС–РЅРѕС‚РµР°С‚СЂС–! Р—Р°РІРґСЏРєРё РЅР°С€РѕРјСѓ СЃРµСЂРІС–СЃСѓ РІРё     |\n");
+                printf("| Р·РјРѕР¶РµС‚Рµ РїСЂРёРґР±Р°С‚Рё РєРІРёС‚РєРё РЅР° СЃРµР°РЅСЃРё Сѓ РєС–РЅРѕС‚РµР°С‚СЂС– С€РІРёРґРєРѕ С‚Р° Р·СЂСѓС‡РЅРѕ.                                   |\n");
+                printf("| РќР°С€Р° РїСЂРѕРіСЂР°РјР° РјР°С” РґСѓР¶Рµ РїСЂРѕСЃС‚РёР№ С‚Р° Р·СЂРѕР·СѓРјС–Р»РёР№ С–РЅС‚РµСЂС„РµР№СЃ. Р’СЃРµ, С‰Рѕ РІР°Рј РїРѕС‚СЂС–Р±РЅРѕ Р·СЂРѕР±РёС‚Рё, С†Рµ РІРёР±СЂР°С‚Рё   |\n");
+                printf("| С„С–Р»СЊРј, РЅР° СЏРєРёР№ РІРё С…РѕС‡РµС‚Рµ РїС–С‚Рё, РІРєР°Р·Р°С‚Рё РїСЂС–Р·РІРёС‰Рµ С‚Р° С–Рј'СЏ, РІРёР±СЂР°С‚Рё Р·СЂСѓС‡РЅРёР№ РґР»СЏ РІР°СЃ СЃРµР°РЅСЃ С‚Р°          |\n");
+                printf("| Р·Р°Р±СЂРѕРЅСЋРІР°С‚Рё РєРІРёС‚РѕРє, РїРѕРјС–Рј РІ вЂњРњРѕС— РєРІРёС‚РєРёвЂќ РѕРїР»Р°С‚РёС‚Рё РєРІРёС‚РѕРє. Р’Рё С‚Р°РєРѕР¶ РјРѕР¶РµС‚Рµ РІС–РґРјС–РЅРёС‚Рё Р±СЂРѕРЅСЋРІР°РЅРЅСЏ, Р°Р»Рµ|\n");
+                printf("| СЏРєС‰Рѕ РІРё РІР¶Рµ РѕРїР»Р°С‚РёР»Рё РіСЂРѕС€С– РјРё РІР°Рј РЅРµ РїРѕРІРµСЂРЅРµРјРѕ.                                                    |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("|                                              Меню - w                                              |\n");
+                printf("|                                              РњРµРЅСЋ - w                                              |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("Вибір опції: ");
+                printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                 scanf("%s", &about);
-                if(about[0] == 'W' || about[0] == 'w' || about[0] == 'Ц' || about[0] == 'ц'){//назад якщо введено w
+                if(about[0] == 'W' || about[0] == 'w' || about[0] == 'Р¦' || about[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                     goto one;
                 }
                 else{
@@ -617,145 +617,145 @@ int main() {
 
 
 
-        if(menu == 'K' || menu == 'k' || menu == 'Л' || menu == 'л') {
+        if(menu == 'K' || menu == 'k' || menu == 'Р›' || menu == 'Р»') {
             konnstr1:
             system("cls");
             char konstr[100];
-            printf("+----------------------------------------------------------------------------------------------------+\n");// конструктор фільмів
-            printf("|   Додати фільм - e                                                                                 |\n");
-            printf("|   Видалити фільм - d                                                                               |\n");
+            printf("+----------------------------------------------------------------------------------------------------+\n");// РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С„С–Р»СЊРјС–РІ
+            printf("|   Р”РѕРґР°С‚Рё С„С–Р»СЊРј - e                                                                                 |\n");
+            printf("|   Р’РёРґР°Р»РёС‚Рё С„С–Р»СЊРј - d                                                                               |\n");
             printf("+----------------------------------------------------------------------------------------------------+\n");
-            printf("|                                              Назад - w                                             |\n");
+            printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
             printf("+----------------------------------------------------------------------------------------------------+\n");
-            printf("Вибір опції: ");
+            printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
             scanf("%s", &konstr);
-            if(konstr[0] == 'W' || konstr[0] == 'w' || konstr[0] == 'Ц' || konstr[0] == 'ц'){//назад якщо введено w
+            if(konstr[0] == 'W' || konstr[0] == 'w' || konstr[0] == 'Р¦' || konstr[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                 goto one;
             }
 
-            if(konstr[0] == 'E' || konstr[0] == 'e' || konstr[0] == 'У' || konstr[0] == 'у'){
+            if(konstr[0] == 'E' || konstr[0] == 'e' || konstr[0] == 'РЈ' || konstr[0] == 'Сѓ'){
                 konnstr2:
                 system("cls");
                 char intfilm1[100];
-                printf("+----------------------------------------------------------------------------------------------------+\n");// введення назви фільму в змінну
-                printf("| Назад - w, не виходить введіть ww     Введіть назву фільму:                                        |\n");
+                printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ РЅР°Р·РІРё С„С–Р»СЊРјСѓ РІ Р·РјС–РЅРЅСѓ
+                printf("| РќР°Р·Р°Рґ - w, РЅРµ РІРёС…РѕРґРёС‚СЊ РІРІРµРґС–С‚СЊ ww     Р’РІРµРґС–С‚СЊ РЅР°Р·РІСѓ С„С–Р»СЊРјСѓ:                                        |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("Введіть дані: ");
+                printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                 getchar();
                 fgets(intfilm1, 255, stdin);
                 int len = strcspn(intfilm1, "\n"); 
                 intfilm1[len] = '\0';
-                if(intfilm1[0] == 'W' || intfilm1[0] == 'w' || intfilm1[0] == 'Ц' || intfilm1[0] == 'ц'){//назад якщо введено w
+                if(intfilm1[0] == 'W' || intfilm1[0] == 'w' || intfilm1[0] == 'Р¦' || intfilm1[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                     goto konnstr1;
                 }
                 else{
                     konnstr3:
                     system("cls");
                     char intfilm2[100];
-                    printf("+----------------------------------------------------------------------------------------------------+\n");//введення вікового рейтинга фільма в змінну
-                    printf("| Назад - w       Введіть віковий рейтинг фільму(у форматі: Вікові обмеження - 18+):                 |\n");
+                    printf("+----------------------------------------------------------------------------------------------------+\n");//РІРІРµРґРµРЅРЅСЏ РІС–РєРѕРІРѕРіРѕ СЂРµР№С‚РёРЅРіР° С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                    printf("| РќР°Р·Р°Рґ - w       Р’РІРµРґС–С‚СЊ РІС–РєРѕРІРёР№ СЂРµР№С‚РёРЅРі С„С–Р»СЊРјСѓ(Сѓ С„РѕСЂРјР°С‚С–: Р’С–РєРѕРІС– РѕР±РјРµР¶РµРЅРЅСЏ - 18+):                 |\n");
                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                    printf("Введіть дані: ");
+                    printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                     fgets(intfilm2, 255, stdin);
                     int len = strcspn(intfilm2, "\n"); 
                     intfilm2[len] = '\0';
-                    if(intfilm2[0] == 'W' || intfilm2[0] == 'w' || intfilm2[0] == 'Ц' || intfilm2[0] == 'ц'){//назад якщо введено w
+                    if(intfilm2[0] == 'W' || intfilm2[0] == 'w' || intfilm2[0] == 'Р¦' || intfilm2[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                         goto konnstr2;
                     }
                     else{
                         konnstr4:
                         system("cls");
                         char intfilm3[100];
-                        printf("+----------------------------------------------------------------------------------------------------+\n");// введення країни виробника фільма в змінну
-                        printf("| Назад - w            Введіть країну виробника фільма(у форматі: Країна - США):                     |\n");
+                        printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ РєСЂР°С—РЅРё РІРёСЂРѕР±РЅРёРєР° С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                        printf("| РќР°Р·Р°Рґ - w            Р’РІРµРґС–С‚СЊ РєСЂР°С—РЅСѓ РІРёСЂРѕР±РЅРёРєР° С„С–Р»СЊРјР°(Сѓ С„РѕСЂРјР°С‚С–: РљСЂР°С—РЅР° - РЎРЁРђ):                     |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("Введіть дані: ");
+                        printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                         fgets(intfilm3, 255, stdin);
                         int len = strcspn(intfilm3, "\n"); 
                         intfilm3[len] = '\0';
-                        if(intfilm3[0] == 'W' || intfilm3[0] == 'w' || intfilm3[0] == 'Ц' || intfilm3[0] == 'ц'){//назад якщо введено w
+                        if(intfilm3[0] == 'W' || intfilm3[0] == 'w' || intfilm3[0] == 'Р¦' || intfilm3[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                             goto konnstr3;
                         }
                         else{
                             konnstr5:
                             system("cls");
                             char intfilm4[100];
-                            printf("+----------------------------------------------------------------------------------------------------+\n");// введення жанра фільма в змінну
-                            printf("| Назад - w            Введіть жанр фільма(у форматі: Жанр - Екшн, Фантастика):                      |\n");
+                            printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ Р¶Р°РЅСЂР° С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                            printf("| РќР°Р·Р°Рґ - w            Р’РІРµРґС–С‚СЊ Р¶Р°РЅСЂ С„С–Р»СЊРјР°(Сѓ С„РѕСЂРјР°С‚С–: Р–Р°РЅСЂ - Р•РєС€РЅ, Р¤Р°РЅС‚Р°СЃС‚РёРєР°):                      |\n");
                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                            printf("Введіть дані: ");
+                            printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                             fgets(intfilm4, 255, stdin);
                             int len = strcspn(intfilm4, "\n"); 
                             intfilm4[len] = '\0';
-                            if(intfilm4[0] == 'W' || intfilm4[0] == 'w' || intfilm4[0] == 'Ц' || intfilm4[0] == 'ц'){//назад якщо введено w
+                            if(intfilm4[0] == 'W' || intfilm4[0] == 'w' || intfilm4[0] == 'Р¦' || intfilm4[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                 goto konnstr4;
                             }
                             else{
                                 konnstr6:
                                 system("cls");
                                 char intfilm5[100];
-                                printf("+----------------------------------------------------------------------------------------------------+\n");// введення головних акторів фільма в змінну
-                                printf("| Назад - w  Введіть головних акторів фільма(у форматі: У головних ролях: Кріс Пратт, Зої Салдана...)|\n");
+                                printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ РіРѕР»РѕРІРЅРёС… Р°РєС‚РѕСЂС–РІ С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                                printf("| РќР°Р·Р°Рґ - w  Р’РІРµРґС–С‚СЊ РіРѕР»РѕРІРЅРёС… Р°РєС‚РѕСЂС–РІ С„С–Р»СЊРјР°(Сѓ С„РѕСЂРјР°С‚С–: РЈ РіРѕР»РѕРІРЅРёС… СЂРѕР»СЏС…: РљСЂС–СЃ РџСЂР°С‚С‚, Р—РѕС— РЎР°Р»РґР°РЅР°...)|\n");
                                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                                printf("Введіть дані: ");
+                                printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                                 fgets(intfilm5, 255, stdin);
                                 int len = strcspn(intfilm5, "\n"); 
                                 intfilm5[len] = '\0';
-                                if(intfilm5[0] == 'W' || intfilm5[0] == 'w' || intfilm5[0] == 'Ц' || intfilm5[0] == 'ц'){//назад якщо введено w
+                                if(intfilm5[0] == 'W' || intfilm5[0] == 'w' || intfilm5[0] == 'Р¦' || intfilm5[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                     goto konnstr5;
                                 }
                                 else{
                                     konnstr7:
                                     system("cls");
                                     char intfilm6[100];
-                                    printf("+----------------------------------------------------------------------------------------------------+\n");// введення тривалості фільма в змінну
-                                    printf("| Назад - w        Введіть тривалість фільма(у форматі: Тривалість - 2:29 149 хв)                    |\n");
+                                    printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ С‚СЂРёРІР°Р»РѕСЃС‚С– С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                                    printf("| РќР°Р·Р°Рґ - w        Р’РІРµРґС–С‚СЊ С‚СЂРёРІР°Р»С–СЃС‚СЊ С„С–Р»СЊРјР°(Сѓ С„РѕСЂРјР°С‚С–: РўСЂРёРІР°Р»С–СЃС‚СЊ - 2:29 149 С…РІ)                    |\n");
                                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                                    printf("Введіть дані: ");
+                                    printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                                     fgets(intfilm6, 255, stdin);
                                     int len = strcspn(intfilm6, "\n"); 
                                     intfilm6[len] = '\0';
-                                    if(intfilm6[0] == 'W' || intfilm6[0] == 'w' || intfilm6[0] == 'Ц' || intfilm6[0] == 'ц'){//назад якщо введено w
+                                    if(intfilm6[0] == 'W' || intfilm6[0] == 'w' || intfilm6[0] == 'Р¦' || intfilm6[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                         goto konnstr6;
                                     }
                                     else{
                                         konnstr8:
                                         system("cls");
                                         char intfilm7[100];
-                                        printf("+----------------------------------------------------------------------------------------------------+\n");// введення опис фільма в змінну
-                                        printf("| Назад - w                 Введіть опис фільма(у форматі: Опис фільму:...)                          |\n");
+                                        printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ РѕРїРёСЃ С„С–Р»СЊРјР° РІ Р·РјС–РЅРЅСѓ
+                                        printf("| РќР°Р·Р°Рґ - w                 Р’РІРµРґС–С‚СЊ РѕРїРёСЃ С„С–Р»СЊРјР°(Сѓ С„РѕСЂРјР°С‚С–: РћРїРёСЃ С„С–Р»СЊРјСѓ:...)                          |\n");
                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                        printf("Введіть дані: ");
+                                        printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                                         fgets(intfilm7, 255, stdin);
                                         int len = strcspn(intfilm7, "\n"); 
                                         intfilm7[len] = '\0';
-                                        if(intfilm7[0] == 'W' || intfilm7[0] == 'w' || intfilm7[0] == 'Ц' || intfilm7[0] == 'ц'){//назад якщо введено w
+                                        if(intfilm7[0] == 'W' || intfilm7[0] == 'w' || intfilm7[0] == 'Р¦' || intfilm7[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                             goto konnstr7;
                                         }
                                         else{
                                             konnstr9:
                                             system("cls");
                                             char intfilm8[100];
-                                            printf("+----------------------------------------------------------------------------------------------------+\n");// введення посилання на трейлер в змінну
-                                            printf("| Назад - w                            Введіть посилання на трейлер:                                 |\n");
+                                            printf("+----------------------------------------------------------------------------------------------------+\n");// РІРІРµРґРµРЅРЅСЏ РїРѕСЃРёР»Р°РЅРЅСЏ РЅР° С‚СЂРµР№Р»РµСЂ РІ Р·РјС–РЅРЅСѓ
+                                            printf("| РќР°Р·Р°Рґ - w                            Р’РІРµРґС–С‚СЊ РїРѕСЃРёР»Р°РЅРЅСЏ РЅР° С‚СЂРµР№Р»РµСЂ:                                 |\n");
                                             printf("+----------------------------------------------------------------------------------------------------+\n");
-                                            printf("Введіть дані: ");
+                                            printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                                             fgets(intfilm8, 255, stdin);
                                             int len = strcspn(intfilm8, "\n"); 
                                             intfilm8[len] = '\0';
-                                            if(intfilm8[0] == 'W' || intfilm8[0] == 'w' || intfilm8[0] == 'Ц' || intfilm8[0] == 'ц'){//назад якщо введено w
+                                            if(intfilm8[0] == 'W' || intfilm8[0] == 'w' || intfilm8[0] == 'Р¦' || intfilm8[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                                 goto konnstr8;
                                             }
                                             else{
-                                                sprintf(sql, "insert into films(name, age, country, genre, cast, duration, about, link) values('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');", intfilm1, intfilm2, intfilm3, intfilm4, intfilm5, intfilm6, intfilm7, intfilm8);//введення в базу даних фільмів новий фільм інформацію про який ми отримали раніше зі змінних
+                                                sprintf(sql, "insert into films(name, age, country, genre, cast, duration, about, link) values('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');", intfilm1, intfilm2, intfilm3, intfilm4, intfilm5, intfilm6, intfilm7, intfilm8);//РІРІРµРґРµРЅРЅСЏ РІ Р±Р°Р·Сѓ РґР°РЅРёС… С„С–Р»СЊРјС–РІ РЅРѕРІРёР№ С„С–Р»СЊРј С–РЅС„РѕСЂРјР°С†С–СЋ РїСЂРѕ СЏРєРёР№ РјРё РѕС‚СЂРёРјР°Р»Рё СЂР°РЅС–С€Рµ Р·С– Р·РјС–РЅРЅРёС…
                                                 rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
                                                 while( 1 ){
                                                     system("cls");
                                                     char finishkon[100];
-                                                    printf("+----------------------------------------------------------------------------------------------------+\n");// завершення додавання нового фільму
-                                                    printf("| Меню - w                           Додавання фільму завершено!                                     |\n");
+                                                    printf("+----------------------------------------------------------------------------------------------------+\n");// Р·Р°РІРµСЂС€РµРЅРЅСЏ РґРѕРґР°РІР°РЅРЅСЏ РЅРѕРІРѕРіРѕ С„С–Р»СЊРјСѓ
+                                                    printf("| РњРµРЅСЋ - w                           Р”РѕРґР°РІР°РЅРЅСЏ С„С–Р»СЊРјСѓ Р·Р°РІРµСЂС€РµРЅРѕ!                                     |\n");
                                                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                    printf("|   Інформація про фільм який ви додали:                                                             |\n");
+                                                    printf("|   Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ С„С–Р»СЊРј СЏРєРёР№ РІРё РґРѕРґР°Р»Рё:                                                             |\n");
                                                     cool_design(intfilm1, 88);
                                                     cool_design(intfilm2, 88);
                                                     cool_design(intfilm3, 88);
@@ -765,13 +765,13 @@ int main() {
                                                     cool_design(intfilm7, 88);
                                                     cool_design(intfilm8, 88);
                                                     printf("+----------------------------------------------------------------------------------------------------+\n");
-                                                    printf("Вибір опції: ");
+                                                    printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                                     scanf("%s", &finishkon);
-                                                    if(finishkon[0] == 'W' || finishkon[0] == 'w' || finishkon[0] == 'Ц' || finishkon[0] == 'ц'){//меню якщо введено w
+                                                    if(finishkon[0] == 'W' || finishkon[0] == 'w' || finishkon[0] == 'Р¦' || finishkon[0] == 'С†'){//РјРµРЅСЋ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                                         goto one;
                                                     }
                                                     else{
-                                                        ;//якщо введено щось інше, то цикл починається наново
+                                                        ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                                     }
                                                 }
                                             }
@@ -788,15 +788,15 @@ int main() {
 
 
 
-            if(konstr[0] == 'D' || konstr[0] == 'd' || konstr[0] == 'В' || konstr[0] == 'в'){//вивід всіх фільмів для видалення якщо введено d
+            if(konstr[0] == 'D' || konstr[0] == 'd' || konstr[0] == 'Р’' || konstr[0] == 'РІ'){//РІРёРІС–Рґ РІСЃС–С… С„С–Р»СЊРјС–РІ РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ d
                 ddd:
                 while( 1 ){
                     system("cls");
-                    printf("+---------------------------------------------------------------------+----------------------------+-+\n");// видалення фільмів з бази даних
-                    printf("|                                              Прем'єри:              | Оберіть фільм для видалення| |\n");
+                    printf("+---------------------------------------------------------------------+----------------------------+-+\n");// РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјС–РІ Р· Р±Р°Р·Рё РґР°РЅРёС…
+                    printf("|                                              РџСЂРµРј'С”СЂРё:              | РћР±РµСЂС–С‚СЊ С„С–Р»СЊРј РґР»СЏ РІРёРґР°Р»РµРЅРЅСЏ| |\n");
                     printf("+---------------------------------------------------------------------+----------------------------+-+\n");
                     sqlite3_stmt *stmt;
-                    rc = sqlite3_prepare_v2(db, "SELECT * FROM films;", -1, &stmt, 0);// вивід всіх фільмів
+                    rc = sqlite3_prepare_v2(db, "SELECT * FROM films;", -1, &stmt, 0);// РІРёРІС–Рґ РІСЃС–С… С„С–Р»СЊРјС–РІ
                     int cols = sqlite3_column_count(stmt);
                     while (sqlite3_step(stmt) == SQLITE_ROW) {
                         const unsigned char *id = sqlite3_column_text(stmt, 0);
@@ -808,15 +808,15 @@ int main() {
                         strcpy(bymam1, reinterpret_cast<const char*>(name));
                         cool_design(bymam1, 88);
                     };
-                    printf("|                                              Назад - w                                             |\n");
+                    printf("|                                              РќР°Р·Р°Рґ - w                                             |\n");
                     printf("+----------------------------------------------------------------------------------------------------+\n");
                     
                     char name12[256];
                     const unsigned char *namef;
-                    printf("Вибір опції: ");
+                    printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                     scanf("%s", name12);
                     system("cls");
-                    if (name12[0] == 'W' || name12[0] == 'w' || name12[0] == 'Ц' || name12[0] == 'ц'){//назад якщо введено w
+                    if (name12[0] == 'W' || name12[0] == 'w' || name12[0] == 'Р¦' || name12[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                         goto konnstr1;
                     }
                     caca:
@@ -827,7 +827,7 @@ int main() {
                     sprintf(query, "SELECT * FROM films WHERE id = %s;", name12);
 
                     rc = sqlite3_prepare_v2(db, query, -1, &pooping, NULL);
-                    printf("+----------------------------------------------------------------------------------------------------+\n");//вивід інформації про фільм який ми хочемо видалити
+                    printf("+----------------------------------------------------------------------------------------------------+\n");//РІРёРІС–Рґ С–РЅС„РѕСЂРјР°С†С–С— РїСЂРѕ С„С–Р»СЊРј СЏРєРёР№ РјРё С…РѕС‡РµРјРѕ РІРёРґР°Р»РёС‚Рё
                     while (sqlite3_step(pooping) == SQLITE_ROW) {
                         namef = sqlite3_column_text(pooping, 1);
                         char bymam2[1000];
@@ -862,50 +862,50 @@ int main() {
                         strcpy(bymam9, reinterpret_cast<const char*>(link));
                     
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("|                                    Назад - w  | Видалити фільм - r                                 |\n");
+                        printf("|                                    РќР°Р·Р°Рґ - w  | Р’РёРґР°Р»РёС‚Рё С„С–Р»СЊРј - r                                 |\n");
                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                        printf("Вибір опції: ");
+                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                         char book12[100];
                         scanf("%s", &book12);
-                        if (book12[0] == 'W'|| book12[0] == 'w' || book12[0] == 'Ц' || book12[0] == 'ц'){//назад якщо введено w
+                        if (book12[0] == 'W'|| book12[0] == 'w' || book12[0] == 'Р¦' || book12[0] == 'С†'){//РЅР°Р·Р°Рґ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                             goto ddd;
                         }
-                        if (book12[0] == 'R'|| book12[0] == 'r' || book12[0] == 'К' || book12[0] == 'к'){//видалення фільму якщо введено r
+                        if (book12[0] == 'R'|| book12[0] == 'r' || book12[0] == 'Рљ' || book12[0] == 'Рє'){//РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјСѓ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ r
                             while ( 1 ){
                                 system("cls");
                                 char yes[100];
-                                printf("+----------------------------------------------------------------------------------------------------+\n");// попередження про видалення фільму
+                                printf("+----------------------------------------------------------------------------------------------------+\n");// РїРѕРїРµСЂРµРґР¶РµРЅРЅСЏ РїСЂРѕ РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјСѓ
                                 printf("|                                                                                                    |\n");
-                                printf("|              Всі дані про цей фільм буде видалено, щоб підтвердити видалення введіть Y             |\n");
+                                printf("|              Р’СЃС– РґР°РЅС– РїСЂРѕ С†РµР№ С„С–Р»СЊРј Р±СѓРґРµ РІРёРґР°Р»РµРЅРѕ, С‰РѕР± РїС–РґС‚РІРµСЂРґРёС‚Рё РІРёРґР°Р»РµРЅРЅСЏ РІРІРµРґС–С‚СЊ Y             |\n");
                                 printf("|                                                                                                    |\n");
                                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                                printf("|                                        Відмінити видалення - w                                     |\n");
+                                printf("|                                        Р’С–РґРјС–РЅРёС‚Рё РІРёРґР°Р»РµРЅРЅСЏ - w                                     |\n");
                                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                                printf("Введіть дані: ");
+                                printf("Р’РІРµРґС–С‚СЊ РґР°РЅС–: ");
                                 scanf("%s", &yes);
-                                if (yes[0] == 'W'|| yes[0] == 'w' || yes[0] == 'Ц' || yes[0] == 'ц'){//відміна бронювання якщо введено w
+                                if (yes[0] == 'W'|| yes[0] == 'w' || yes[0] == 'Р¦' || yes[0] == 'С†'){//РІС–РґРјС–РЅР° Р±СЂРѕРЅСЋРІР°РЅРЅСЏ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                     goto caca;
                                 }
-                                if (yes[0] == 'Y'|| yes[0] == 'y' || yes[0] == 'Н' || yes[0] == 'н'){//видалення фільму якщо введено y
+                                if (yes[0] == 'Y'|| yes[0] == 'y' || yes[0] == 'Рќ' || yes[0] == 'РЅ'){//РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјСѓ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ y
                                     while( 1 ){
                                         system("cls");
                                         char remove1[100];
-                                        sprintf(sql, "DELETE FROM films WHERE id = '%s';", name12);//видалення фільму по обраному id
+                                        sprintf(sql, "DELETE FROM films WHERE id = '%s';", name12);//РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјСѓ РїРѕ РѕР±СЂР°РЅРѕРјСѓ id
                                         rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
-                                        printf("+----------------------------------------------------------------------------------------------------+\n");// видалення фільму
+                                        printf("+----------------------------------------------------------------------------------------------------+\n");// РІРёРґР°Р»РµРЅРЅСЏ С„С–Р»СЊРјСѓ
                                         printf("|                                                                                                    |\n");
-                                        printf("|                                         Фільм видалено!!!                                          |\n");
+                                        printf("|                                         Р¤С–Р»СЊРј РІРёРґР°Р»РµРЅРѕ!!!                                          |\n");
                                         printf("|                                                                                                    |\n");
                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                        printf("|                                              Меню - w                                              |\n");
+                                        printf("|                                              РњРµРЅСЋ - w                                              |\n");
                                         printf("+----------------------------------------------------------------------------------------------------+\n");
-                                        printf("Вибір опції: ");
+                                        printf("Р’РёР±С–СЂ РѕРїС†С–С—: ");
                                         scanf("%s", &remove1);
-                                        if (remove1[0] == 'W' || remove1[0] == 'w' || remove1[0] == 'Ц' || remove1[0] == 'ц'){//меню якщо введено w
+                                        if (remove1[0] == 'W' || remove1[0] == 'w' || remove1[0] == 'Р¦' || remove1[0] == 'С†'){//РјРµРЅСЋ СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ w
                                             goto one;
                                         }
                                         else{
-                                            ;//якщо введено щось інше, то цикл починається наново
+                                            ;//СЏРєС‰Рѕ РІРІРµРґРµРЅРѕ С‰РѕСЃСЊ С–РЅС€Рµ, С‚Рѕ С†РёРєР» РїРѕС‡РёРЅР°С”С‚СЊСЃСЏ РЅР°РЅРѕРІРѕ
                                         }
                                     }
                                 }
@@ -917,7 +917,7 @@ int main() {
         }
 
         if(menu=='4') {
-            printf("Вихід.\n");//вихід з програми
+            printf("Р’РёС…С–Рґ.\n");//РІРёС…С–Рґ Р· РїСЂРѕРіСЂР°РјРё
             break;
         }
         else{
