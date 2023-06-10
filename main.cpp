@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <stdbool.h>
 
+
 #pragma comment(lib,"shell32")//для використання відкриття посилань в браузері
 
 using namespace std;
@@ -67,11 +68,10 @@ int main() {
     rc = sqlite3_exec(db, sql, NULL, NULL, NULL);
 
 
-
     while ( 1 ) {
         one:
         system("cls");
-        printf("+----------------------------------------------------------------------------------------------------+\n");// меню
+        printf("+----------------------------------------------------------------------------------------------------+\n");// меню програми
         printf("| K - додавання фільмів                          Меню:                                               |\n");
         printf("+----------------------------------------------------------------------------------------------------+\n");
         printf("|                                              Прем'єри - 1                                          |\n");
@@ -381,25 +381,26 @@ int main() {
             while ( 1 ){
                 tickets:
                 system("cls");
-                printf("+----------------------------------------------------------------------------------------------------+\n");// вибірка квитків з бази даних (не повна інформація)
-                printf("                                                Квитки:                 | Оберіть квиток |            \n");
+                printf("+------------------------------------------------------------------------+----------------+----------+\n");// вибірка квитків з бази даних (не повна інформація)
+                printf("|                                                Квитки:                 | Оберіть квиток |          |\n");
+                printf("+------------------------------------------------------------------------+----------------+----------+\n");
                 sqlite3_stmt *ticket;
                 rc = sqlite3_prepare_v2(db, "SELECT * FROM tickets;", -1, &ticket, 0);
                 int cols = sqlite3_column_count(ticket);
                 while (sqlite3_step(ticket) == SQLITE_ROW) {//вивід квитка з бази даних tickets 
                     const unsigned char *id = sqlite3_column_text(ticket, 0);
-                    printf("%s - ",id);
+                    printf("|%s - ",id);
                     const unsigned char *film_name = sqlite3_column_text(ticket, 1);
                     printf("%s, ",film_name);
                     const unsigned char *customer_name = sqlite3_column_text(ticket, 2);
                     printf("%s",customer_name);
                     const unsigned char *price = sqlite3_column_text(ticket, 7);
-                    printf("%s, ",price);
+                    printf("|%s, ",price);
                     const unsigned char *paystatus = sqlite3_column_text(ticket, 8);
                     printf("%s;\n",paystatus);
                 };
-                printf("                                                                                                      \n");
-                printf("                                               Меню - w                                               \n");
+                printf("+----------------------------------------------------------------------------------------------------+\n");
+                printf("|                                               Меню - w                                             |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
                 char tick[256];
                 printf("Вибір опції: ");
@@ -447,11 +448,11 @@ int main() {
                         printf("+----------------------------------------------------------------------------------------------------+\n");// після вибору квитка виводиться повна інформація з бази даних про цей квиток 
                         while (sqlite3_step(pooping) == SQLITE_ROW) {
                             const unsigned char *id = sqlite3_column_text(pooping, 0);
-                            printf("%s - ", id);
+                            printf("|%s - ", id);
                             const unsigned char *film_name = sqlite3_column_text(pooping, 1);
                             printf("%s, прізвище  та ім'я - ", film_name);
                             const unsigned char *customer_name = sqlite3_column_text(pooping, 2);
-                            printf("%sдата - ", customer_name);
+                            printf("%s|дата - ", customer_name);
                             const unsigned char *booking_date = sqlite3_column_text(pooping, 3);
                             printf("%s, сеанс - ", booking_date);
                             const unsigned char *seans = sqlite3_column_text(pooping, 4);
@@ -493,7 +494,7 @@ int main() {
                     }
                 }
                 printf("+----------------------------------------------------------------------------------------------------+\n");
-                printf("                        Квитки - w  | Сплатити квиток - e | Відмінити бронювання - r                  \n");
+                printf("|                       Квитки - w  | Сплатити квиток - e | Відмінити бронювання - r                 |\n");
                 printf("+----------------------------------------------------------------------------------------------------+\n");
                 printf("Вибір опції: ");
                 char book[100];
