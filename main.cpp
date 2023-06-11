@@ -450,7 +450,7 @@ int main() {
                             const unsigned char *id = sqlite3_column_text(pooping, 0);
                             printf("|%s - ", id);
                             const unsigned char *film_name = sqlite3_column_text(pooping, 1);
-                            printf("%s, прізвище  та ім'я - ", film_name);
+                            printf("%s, прізвище та ім'я - ", film_name);
                             const unsigned char *customer_name = sqlite3_column_text(pooping, 2);
                             printf("%s|дата - ", customer_name);
                             const unsigned char *booking_date = sqlite3_column_text(pooping, 3);
@@ -464,7 +464,7 @@ int main() {
                             const unsigned char *price = sqlite3_column_text(pooping, 7);
                             printf("%s, ", price);
                             const unsigned char *paystatus = sqlite3_column_text(pooping, 8);
-                            printf("%s;\n",paystatus);
+                            printf("%s.\n",paystatus);
                         }
                     }
                 }   
